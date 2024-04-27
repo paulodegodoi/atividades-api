@@ -1,0 +1,57 @@
+@using System.ComponentModel
+@using Atividades.Domain.Enums
+@using Atividades.Domain.Models
+@model List<Atividade>
+
+@{
+    var atividades = Model ?? new List<Atividade>();
+    atividades.Add((new Atividade()
+    {
+        Name = "Teste",
+        Prioridade = EAtividade.EPrioridade.Alta,
+        Status = EAtividade.EStatus.Aberta
+    }
+    ));
+    atividades.Add(new Atividade()
+    {
+        Name = "Concl",
+        Prioridade = EAtividade.EPrioridade.Alta,
+        Status = EAtividade.EStatus.Concluida
+    });
+}
+
+<div class="row">
+    <h1>Atividades</h1> 
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Prioridade</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var atv in atividades)
+            {
+                var rowColor = "table-";
+                switch (atv.Status)
+                {
+                    case EAtividade.EStatus.Aberta:
+                        rowColor += "light";
+                        break;
+                    case EAtividade.EStatus.Concluida:
+                        rowColor += "success";
+                        break;
+                }
+                
+                <tr class="@rowColor">
+                    <td>@atv.Name</td>
+                    <td>@atv.Prioridade</td>
+                    <td>@atv.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

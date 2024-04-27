@@ -1,0 +1,11 @@
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/bin/Debug/net6.0/Atividades.Domain.deps.json
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/bin/Debug/net6.0/Atividades.Domain.dll
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/bin/Debug/net6.0/Atividades.Domain.pdb
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/Atividades.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/Atividades.Domain.AssemblyInfoInputs.cache
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/Atividades.Domain.AssemblyInfo.cs
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/Atividades.Domain.csproj.CoreCompileInputs.cache
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/Atividades.Domain.dll
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/refint/Atividades.Domain.dll
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/Atividades.Domain.pdb
+/Users/paulo/dev/csharp/Atividades/Atividades.Domain/obj/Debug/net6.0/ref/Atividades.Domain.dll
