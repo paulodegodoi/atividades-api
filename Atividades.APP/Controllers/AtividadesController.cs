@@ -2,9 +2,11 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc;
 using Atividades.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Atividades.APP.Controllers;
 
+[Authorize]
 public class AtividadesController : Controller
 {
     private readonly string baseApiUrl = "http://localhost:5153/api";
@@ -28,9 +30,8 @@ public class AtividadesController : Controller
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            
         }
-        return View();
+        return View(null);
     }
 }
