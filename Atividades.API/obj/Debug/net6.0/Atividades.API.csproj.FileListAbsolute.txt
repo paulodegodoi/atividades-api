@@ -58,3 +58,4 @@
 /Users/paulo/dev/csharp/Atividades/Atividades.API/obj/Debug/net6.0/ref/Atividades.API.dll
 /Users/paulo/dev/csharp/Atividades/Atividades.API/bin/Debug/net6.0/Atividades.Domain.dll
 /Users/paulo/dev/csharp/Atividades/Atividades.API/bin/Debug/net6.0/Atividades.Domain.pdb
+/Users/paulo/dev/csharp/Atividades/Atividades.API/obj/Debug/net6.0/Atividades.API.sourcelink.json

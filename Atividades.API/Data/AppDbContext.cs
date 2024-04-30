@@ -7,7 +7,7 @@ namespace Atividades.API.Data
 	public class AppDbContext : DbContext
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-		public DbSet<Atividade>? Atividades { get; set; }
+		public DbSet<Atividade> Atividades { get; set; }
 	}
 }
 

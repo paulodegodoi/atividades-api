@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Atividades.APP")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+07d748a9ac4103aba132276e08b92d156168411a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9cb388289d917db70e87871e25f1d777eb674cf")]
 [assembly: System.Reflection.AssemblyProductAttribute("Atividades.APP")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Atividades.APP")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -20,14 +20,30 @@
     <None Remove="Data\" />
     <None Remove="Models\" />
     <None Remove="Enums\" />
+    <None Remove="Enums\**" />
+    <None Remove="Models\**" />
+    <None Remove="IAtividadesRepository\**" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
-    <Folder Include="Models\" />
-    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atividades.Domain\Atividades.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Enums\**" />
+    <Compile Remove="Models\**" />
+    <Compile Remove="IAtividadesRepository\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <EmbeddedResource Remove="IAtividadesRepository\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Enums\**" />
+    <Content Remove="Models\**" />
+    <Content Remove="IAtividadesRepository\**" />
   </ItemGroup>
 </Project>

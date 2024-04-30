@@ -1,103 +1,97 @@
-﻿using Atividades.API.Data;
+﻿using Atividades.Domain.Interfaces;
 using Atividades.Domain.Models;
+using Atividades.Domain.Constants;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+namespace Atividades.API.Controllers;
 
-namespace Atividades.API.Controllers
+[Route("api/[controller]")]
+public class AtividadesController : ControllerBase
 {
-    [Route("api/[controller]")]
-    public class AtividadesController : ControllerBase
+    private readonly IAtividadesRepository _atividadesRepository;
+
+    public AtividadesController(IAtividadesRepository atividadesRepository)
     {
-        private readonly AppDbContext _context;
-        public AtividadesController(AppDbContext context)
-        {
-            _context = context;
-        }
+        _atividadesRepository = atividadesRepository;
+    }
 
-        // atividades
-        [HttpGet]
-        public ActionResult<IEnumerable<Atividade>> GetAll()
-        {
-            return _context.Atividades!;
-        }
+    // atividades
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Atividade>>> GetAll()
+    {
+        return await _atividadesRepository.GetAllAsync();
+    }
 
-        // atividades/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Atividade> Get(int id)
+    // atividades/{id}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Atividade>> Get(int id)
+    {
+        try
         {
-            var atividade = _context.Atividades!.FirstOrDefault(x => x.AtividadeId == id);
-
+            throw new Exception("t");
+            var atividade = await _atividadesRepository.GetAsync(id);
             if (atividade is null) return NotFound();
 
-            return atividade;
+            return Ok(atividade);
         }
-
-        [HttpPost]
-        public ActionResult<Atividade> Post(Atividade atividade)
+        catch (Exception e)
         {
-            try
-            {
-                _context.Add(atividade);
-                _context.SaveChanges();
-
-                return atividade;
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Houve um erro ao processar sua requisição. Erro: " + ex.Message);
-            }
+            Console.WriteLine(e);
+            return StatusCode(500, Global.DEFAULT_ERROR_MESSAGE);
         }
+    }
 
-        // atividade/{id}
-        [HttpPut("{id}")]
-        public ActionResult<Atividade> Put(int id, Atividade atividade)
+    // atividades
+    [HttpPost]
+    public async Task<ActionResult<Atividade>> Post(Atividade atividade)
+    {
+        try
         {
-            if (id != atividade.AtividadeId)
-                throw new ArgumentOutOfRangeException("O id informado não é o mesmo da ativada informada.");
+            var atv = await _atividadesRepository.AddAsync(atividade);
+            return Created("Get", atv);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Houve um erro ao processar sua requisição. Erro: " + ex.Message);
+        }
+    }
 
-            var ativadeToUpdate = _context.Atividades!.FirstOrDefault(x => x.AtividadeId == id);
+    // atividades/{id}
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Atividade>> Put(int id, Atividade atividade)
+    {
+        try
+        {
+            var ativadeToUpdate = await _atividadesRepository.GetAsync(id);
 
             if (ativadeToUpdate is null)
                 return NotFound("Atividade não encontrada.");
 
-            ativadeToUpdate.Name = atividade.Name;
-            ativadeToUpdate.Prioridade = atividade.Prioridade;
-            ativadeToUpdate.Status = atividade.Status;
-
-            try
-            {
-                _context.Atividades!.Update(ativadeToUpdate);
-                _context.SaveChanges();
-
-                return ativadeToUpdate;
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Houve um erro ao processar sua requisição. Erro: " + ex.Message);
-            }
-
+            await _atividadesRepository.UpdateAsync(id, atividade);
+            return Ok(atividade);
         }
-        [HttpDelete("{id}")]
-        public ActionResult Delete(int id)
+        catch (Exception ex)
         {
-            var atividade = _context.Atividades!.FirstOrDefault(x => x.AtividadeId == id);
+            return StatusCode(500, "Houve um erro ao processar sua requisição. Erro: " + ex.Message);
+        }
+    }
 
+    // atividades/{id}
+    [HttpDelete("{id}")]
+    public async Task<ActionResult> Delete(int id)
+    {
+        try
+        {
+            var atividade = await _atividadesRepository.GetAsync(id);
             if (atividade is null)
-                return NotFound();
-
-            try
-            {
-                _context.Atividades!.Remove(atividade);
-                _context.SaveChanges();
-
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest("Houve um erro ao processar sua requisição. Erro: " + ex.Message);
-            }
+                return NotFound("Atividade não encontrada");
+            
+            await _atividadesRepository.DeleteAsync(id);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, "Houve um erro ao processar sua requisição. Erro: " + ex.Message);
         }
     }
 }
-
